@@ -32,17 +32,18 @@ static void crearArchivo(string ruta, List<string> lista)
     string nombre;
     string extencion;
     int i=1;
-    // if(!File.Exists(ruta+"index.csv")) {
-        StreamWriter sr = new StreamWriter(ruta+@"\index.csv");
-    // } else {
-
-    // }
+    if(!File.Exists(ruta+@"\index.csv")) {
+        StreamWriter sw = new StreamWriter(ruta+@"\index.csv");
+    } else {
+        // FileStream archiv = new File.Open(ruta+@"\index.csv", FileMode.Append);
+        StreamWriter sw = new StreamWriter(ruta+@"\index.csv",true);
+    }
     foreach (var archivo in lista) {
         nombre = archivo.Split('.')[0];
         extencion = archivo.Split('.')[1];
-        sr.WriteLine(i+++";"+nombre+";"+extencion);
+        sw.WriteLine(i+++";"+nombre+";"+extencion);
     }
-    sr.Close();
+    sw.Close();
 }
 
 
